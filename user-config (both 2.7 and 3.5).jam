@@ -1,0 +1,15 @@
+ 
+using python 
+    : 3.5
+    : d:\\cad\\PYTHON~1.5\\python
+    : d:\\cad\\PYTHON~1.5\\include
+    : d:\\cad\\PYTHON~1.5\\libs
+    ;
+
+using python
+    : 2.7
+    :  d:\\cad\\python27\\python
+    :  d:\\cad\\python27\\include
+    :  d:\\cad\\python27\\libs
+    ;
+ 

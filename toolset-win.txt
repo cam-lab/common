@@ -1,0 +1,10 @@
+Note: If possible check downloaded archives, ISO etc - use utility like MD5_and_SHA_Checksum_Utility.exe - http://download.canadiancontent.net/MD5_SHA_Checksum_Utility.html
+
+1. Download and install Visual Studio Community Edition 2015 (https://download.microsoft.com/download/b/e/d/bedddfc4-55f4-4748-90a8-ffe38a40e89f/vs2015.3.com_enu.iso)
+2. Download and install Qt (https://www.qt.io/download-thank-you),  ver. 5.9.1 preferrable
+3. Download and install Python3 (latest version) (https://www.python.org/downloads/)
+	3.1 Install Numpy
+4. Download and install Python2 (latest version) (https://www.python.org/downloads/)
+5. Download and install Boost - see boost-cfg-win.txt and user-config.jam
+6. Download and install Scons (http://scons.org/pages/download.html), ver. 3.0.1
+7. Download and install Qt plug-in for Scons (https://bitbucket.org/dirkbaechle/scons_qt5)

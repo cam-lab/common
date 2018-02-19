@@ -1,0 +1,47 @@
+Boost installing and configuration at Windows platform
+
+1. Load boost current release from http://www.boost.org/users/download/. It's better to download 7z archive - less size and more fast unpacking (compare to zip).
+2. Unpack archive to tmp directory. Default name as archive name, i.e:
+	archive: boost_1_66_0.7z
+	dir:     e:\distrib\boost\boost_1_66_0       
+3. Run bootstrap.bat at root dir, i.e:
+	e:\distrib\boost\boost_1_66_0\bootstrap.bat
+
+4. (optional) Create file user-config.jam in %HOME% directory (i.e. d:\home)
+   Fill this file info about Python which you want to use, i.e.
+
+using python 
+    : 3.5
+    : d:\\cad\\PYTHON~1.5\\python
+    : d:\\cad\\PYTHON~1.5\\include
+    : d:\\cad\\PYTHON~1.5\\libs
+    ;
+	
+5. Run b2.exe from root dir with the following parameters (some parameters are optional - see comments below):			
+	b2.exe install --prefix="d:/cad/boost/1_66_0" address-model=64 variant=release link=static,shared -j6 > build.log 2>&1
+
+   install                        - install boost
+   --prefix="d:/cad/boost/1_66_0" - deployment root dir
+   address-model=64               - 64 bit             (! with --layout=system you MUST use ONLY ONE variant 32/64 - when multiply variants - there are build-script errors)
+   variant=release                - only release       (! with --layout=system you MUST use ONLY ONE variant release/debug - when multiply variants - there are build-script errors)
+   link=static,shared             - static and dll libs
+   -j6                            - use 6 cores for build in parallel   (optional but recommended)
+   > build.log                    - write all output info in log file   (optional)
+   2>&1                           - redirect stderr to stdout           (optional)
+
+   (optional) you can also add option 'toolset=msvc-14.0' 
+
+5a. (alternative variant) - the same as (5) but add option
+   --layout=system                - linux-style lib naming and	dir structure:
+				    	d:/cad/boost/1_66_0/include
+				    	d:/cad/boost/1_66_0/lib
+     				    by default (Windows) used --layout=versioned (see b2.exe --help for details)        				                       
+     
+     (!) in the case of usibg (5a) instead (5) you MUST change 'scons' file used for build sources with Boost
+	 
+	var 1:
+		You MUST add DEFINE 'BOOST_AUTO_LINK_NOMANGLE' and don't worry about used Boost libs (they will be autolinked but with proper names)
+        or
+      
+        var 2:  
+		You MUST add DEFINE 'BOOST_ALL_NO_LIB' and MUST add proper lib names ('boost_numpy3', 'boost_python3') to LIB var
